@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('finances', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id'); // Dodajemy kolumnę user_id dla relacji z użytkownikiem
+            $table->unsignedBigInteger('user_id');
             $table->decimal('amount', 10, 2);
             $table->enum('type', ['income', 'outcome']);
             $table->string('category');
