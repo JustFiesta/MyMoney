@@ -18,7 +18,7 @@ class UserSeeder extends Seeder
     {
         User::insert([
             'login' => 'admin',
-            'mail' => 'admin@example.com',
+            'email' => 'admin@example.com',
             'password' => Hash::make('P@ssw0rd'),
             'role_id' => 1,
             'created_at' => Carbon::now(),
@@ -28,7 +28,7 @@ class UserSeeder extends Seeder
         for ($i = 1; $i <= 6; $i++) {
             User::create([
                 'login' => 'user'.$i,
-                'mail' => 'user'.$i.'@example.com',
+                'email' => 'user'.$i.'@example.com',
                 'password' => Hash::make('password'.$i),
                 'role_id' => 2,
                 'created_at' => Carbon::now(),
@@ -38,7 +38,7 @@ class UserSeeder extends Seeder
 
         User::create([
             'login' => 'anonim',
-            'mail' => 'anonim@example.com',
+            'email' => 'anonim@example.com',
             'password' => Hash::make('password'),
             'role_id' => 3, 
             'created_at' => Carbon::now(),
