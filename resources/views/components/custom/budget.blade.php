@@ -1,24 +1,24 @@
+{{-- Fetching categories from provided attributes, from parent view --}}
+@php
+    $categories = $attributes['categories'];
+    $expencesCollection = $attributes['attributes'];
+
+    // $expences = $expencesCollection->pluck('amount');
+@endphp
+@dd($attributes)
 <div {{ $attributes->merge(['type' => 'submit', 'class' => 'pt-2 md:p-6 flex flex-col lg:flex-row justify-between w-full text-center' ]) }}>
     <div class="bg-white dark:bg-gray-800 overflow-hidden w-full lg:w-5/12">
         <div class="p-6 text-gray-600 dark:text-gray-100">
             {{ __("Szybki dostęp") }}
-            {{-- @isset($categories)
-                @if (count($categories) > 0)
-                    <h2>Wyniki wyszukiwania</h2>
-                    <ul>
-                    @foreach ($categories as $category)
-                        <li>
-                        {{ $category }}
-                        </li>
-                    @endforeach
-                    </ul>
-                @else
-                    <p>Brak wyników wyszukiwania.</p>
-                @endif
-            @endisset
-            @foreach($categories as $category)
-                <p>{{ $category }}</p>
-            @endforeach --}}
+        </div>
+        <div class="flex flex-col text-gray-600">
+            @if (count($categories) > 0)
+                @foreach ($categories as $category)
+                    <button>{{ $category }}</button>
+                @endforeach
+            @else
+                <p>Brak kategorii dla twojego konta.</p>
+            @endif
         </div>
     </div>
     <div class="bg-white dark:bg-gray-800 overflow-hidden w-full lg:border-l-2 lg:border-r-2 border-grey-600">
