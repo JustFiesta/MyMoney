@@ -15,8 +15,6 @@
             </div>
         </div>
     </div>
-    {{-- @foreach($categories as $category)
-        <p>{{ $category }}</p>
-    @endforeach --}}
-    <x-custom.budget :categories="$categories"/>
+
+    <x-custom.budget :categories="$categories" :expences="$expences" />
 </x-app-layout>
