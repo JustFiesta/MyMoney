@@ -15,9 +15,6 @@
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('Strona główna') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('budget')" :active="request()->routeIs('budget')">
-                        {{ __('Budżet') }}
-                    </x-nav-link>
                     <x-nav-link :href="route('edit-budget')" :active="request()->routeIs('edit-budget')">
                         {{ __('Edycja') }}
                     </x-nav-link>
@@ -83,9 +80,6 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
                 {{ __('Strona główna') }}
-            </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('budget')" :active="request()->routeIs('budget')">
-                {{ __('Budżet') }}
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('edit-budget')" :active="request()->routeIs('edit-budget')">
                 {{ __('Edycja') }}

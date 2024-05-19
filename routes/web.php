@@ -11,10 +11,6 @@ Route::get('/home', function () {
     return view('home');
 })->middleware(['auth', 'verified'])->name('home');
 
-Route::get('/budget', function () {
-    return view('budget');
-})->middleware(['auth', 'verified'])->name('budget');
-
 Route::get('/edit-budget', function () {
     return view('edit-budget');
 })->middleware(['auth', 'verified'])->name('edit-budget');
