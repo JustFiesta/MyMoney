@@ -41,7 +41,6 @@
             .registerButton:hover {
                 background: rgb(183, 45, 250);
                 color: white;
-                border: 3px solid white;
             }
         </style>
 
@@ -57,8 +56,8 @@
                     <span class="welcomeFont text-center text-xl mt-5">Kontroluj budżet, planuj wydatki i ustawiaj cele.<br>
                         Dzięki myMoney w łatwy i szybki sposób ogarniesz swoje finanse.</span>
                     @auth()
-                        <span>
-                            <a href="{{ route('dashboard') }}" class="text-2xl bg-blue-700 text-gray-50 px-4 py-2 rounded  hover:bg-blue-400">Strona główna</a>
+                        <span class="mt-10 gap-4">
+                            <a href="{{ route('home') }}" class="text-2xl px-4 py-2 rounded-full text-center registerButton">Strona główna</a>
                         </span>
                     @else
                         <span class="flex flex-col-reverse mt-10 gap-4">
@@ -70,6 +69,11 @@
                     @endauth
                 </div>
             @endif
+
+            <!-- Display preview of panel for guest -->
+            {{-- @guest
+                <x-manage-finance-panel />
+            @endguest --}}
         </div>
     </body>
 </html>
