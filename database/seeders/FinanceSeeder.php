@@ -38,7 +38,7 @@ class FinanceSeeder extends Seeder
      */
     private function getRandomCategory()
     {
-        $categories = ['transport', 'health', 'food', 'utilities', 'entertainment'];
+        $categories = ['Transport', 'Zdrowie', 'Jedzenie', 'Rozrywka', 'Zakupy'];
         return $categories[array_rand($categories)];
     }
 }
