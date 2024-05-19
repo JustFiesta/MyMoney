@@ -14,36 +14,6 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Chakra+Petch:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
 
-        <style>
-            .welcomeFont {
-                font-family: "Chakra Petch", sans-serif;
-                font-weight: 300;
-                font-style: normal;
-                font-weight: bold
-            }
-            .loginButton {
-                background: rgb(183, 45, 250);
-                color: white;
-                border: 3px solid white;
-                transition: background 0.1s linear, color 0.1s linear, border-color 0.1s linear;
-            }
-            .loginButton:hover {
-                background: white;
-                color: rgb(183, 45, 250);
-                border: 3px solid rgb(183, 45, 250);
-            }
-            .registerButton {
-                background: white;
-                color: rgb(183, 45, 250);
-                border: 3px solid rgb(183, 45, 250);
-                transition: background 0.1s linear, color 0.1s linear, border-color 0.1s linear;
-            }
-            .registerButton:hover {
-                background: rgb(183, 45, 250);
-                color: white;
-            }
-        </style>
-
         <!-- Styles -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
@@ -72,7 +42,7 @@
 
             <!-- Display preview of panel for guest -->
             {{-- @guest
-                <x-manage-finance-panel />
+                <x-custom.manage-finance-panel />
             @endguest --}}
         </div>
     </body>

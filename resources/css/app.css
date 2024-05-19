@@ -3,3 +3,36 @@
 @tailwind utilities;
 
 [x-cloak] { display: none;}
+
+*{
+    font-family: "Chakra Petch", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+.welcomeFont {
+    font-family: "Chakra Petch", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-weight: bold
+}
+.loginButton {
+    background: rgb(183, 45, 250);
+    color: white;
+    border: 3px solid white;
+    transition: background 0.1s linear, color 0.1s linear, border-color 0.1s linear;
+}
+.loginButton:hover {
+    background: white;
+    color: rgb(183, 45, 250);
+    border: 3px solid rgb(183, 45, 250);
+}
+.registerButton {
+    background: white;
+    color: rgb(183, 45, 250);
+    border: 3px solid rgb(183, 45, 250);
+    transition: background 0.1s linear, color 0.1s linear, border-color 0.1s linear;
+}
+.registerButton:hover {
+    background: rgb(183, 45, 250);
+    color: white;
+}
