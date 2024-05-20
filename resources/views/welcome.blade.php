@@ -39,11 +39,7 @@
                     @endauth
                 </div>
             @endif
-
-            <!-- Display preview of panel for guest -->
-            {{-- @guest
-                <x-custom.manage-finance-panel />
-            @endguest --}}
         </div>
+        @include('budget.index');
     </body>
 </html>
