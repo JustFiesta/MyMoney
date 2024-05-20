@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\User;
+
 class UserController extends Controller
 {
     /**
@@ -24,15 +26,32 @@ class UserController extends Controller
             // Fetch unique categories
             $categories = $finances->pluck('category')->unique();
             $expences = $finances->where('type', 'outcome');
+            $goals = $user->goals;
             
             // Return view with finances and categories
             return view('home', [
                 'categories' => $categories,
-                'expences' => $expences
+                'expences' => $expences,
+                'goals' => $goals
             ]);
         } else {
             // Redirect guests
-            return redirect()->route('login');
+            $user = User::where("role_id", 3)->first(); 
+    
+            // Fetch user finances
+            $finances = $user->finances;
+    
+            // Fetch unique categories
+            $categories = $finances->pluck('category')->unique();
+            $expences = $finances->where('type', 'outcome');
+            $goals = $user->goals;
+            
+            // Return view with finances and categories
+            return view('welcome', [
+                'categories' => $categories,
+                'expences' => $expences,
+                'goals' => $goals
+            ]);
         }
     }
 }

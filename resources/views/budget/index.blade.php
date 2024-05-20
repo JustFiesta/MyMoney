@@ -4,7 +4,6 @@
             {{ __("Szybki dostęp") }}
         </div>
         <div class="flex flex-col text-gray-600">
-            {{-- @dd($categories) --}}
             @if (@isset($categories) && !$categories->isEmpty())
                 @foreach ($categories as $category)
                     <button>{{ $category }}</button>
