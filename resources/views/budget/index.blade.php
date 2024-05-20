@@ -1,12 +1,4 @@
-{{-- Fetching categories from provided attributes, from parent view --}}
-@php
-    $categories = $attributes['categories'];
-    $expencesCollection = $attributes['attributes'];
-
-    // $expences = $expencesCollection->pluck('amount');
-@endphp
-@dd($attributes)
-<div {{ $attributes->merge(['type' => 'submit', 'class' => 'pt-2 md:p-6 flex flex-col lg:flex-row justify-between w-full text-center' ]) }}>
+<div class="pt-2 md:p-6 flex flex-col lg:flex-row justify-between w-full text-center">
     <div class="bg-white dark:bg-gray-800 overflow-hidden w-full lg:w-5/12">
         <div class="p-6 text-gray-600 dark:text-gray-100">
             {{ __("Szybki dostęp") }}
