@@ -22,7 +22,7 @@
             <x-application-logo class="w-52" />
             @if (Route::has('login'))
                 <div class="flex flex-col justify-center items-center mt-10 w-full gap-2 md:w-2/5 dark:text-gray-50">
-                    <span class="welcomeFont text-4xl">Witaj w myMoney!</span>
+                    <span class="welcomeFont text-4xl text-center">Witaj w myMoney!</span>
                     <span class="welcomeFont text-center text-xl mt-5">Kontroluj budżet, planuj wydatki i ustawiaj cele.<br>
                         Dzięki myMoney w łatwy i szybki sposób ogarniesz swoje finanse.</span>
                     @auth()
