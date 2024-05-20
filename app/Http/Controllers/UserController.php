@@ -24,9 +24,8 @@ class UserController extends Controller
             // Fetch unique categories
             $categories = $finances->pluck('category')->unique();
             $expences = $finances->where('type', 'outcome');
-
+            
             // Return view with finances and categories
-            // return view('components.custom.budget', [
             return view('home', [
                 'categories' => $categories,
                 'expences' => $expences
