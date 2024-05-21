@@ -5,7 +5,7 @@
         </h2>
 
         <p class="mt-1 text-sm text-gray-600 dark:text-gray-400">
-            {{ __("Jeśli chcesz, możesz zaktualizować swój login i hasło poniżej.") }}
+            {{ __("Jeśli chcesz, możesz zaktualizować swój login i email poniżej.") }}
         </p>
     </header>
 
