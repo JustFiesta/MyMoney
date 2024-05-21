@@ -24,8 +24,10 @@ class UserController extends Controller
             $finances = $user->finances;
 
             // Fetch unique categories
-            $categories = $finances->pluck('category')->unique();
             $expences = $finances->where('type', 'outcome');
+
+            // Fetch unique categories from expenses
+            $categories = $expences->pluck('category')->unique();
             $goals = $user->goals;
             
             // Return view with finances and categories
@@ -42,8 +44,11 @@ class UserController extends Controller
             $finances = $user->finances;
     
             // Fetch unique categories
-            $categories = $finances->pluck('category')->unique();
+            // Fetch user finances where type is 'outcome'
             $expences = $finances->where('type', 'outcome');
+
+            // Fetch unique categories from expenses
+            $categories = $expences->pluck('category')->unique();
             $goals = $user->goals;
             
             // Return view with finances and categories
