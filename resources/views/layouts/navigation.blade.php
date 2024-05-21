@@ -15,7 +15,7 @@
                     <x-nav-link :href="route('home')" :active="request()->routeIs('home')">
                         {{ __('Strona główna') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('edit-budget')" :active="request()->routeIs('edit-budget')">
+                    <x-nav-link :href="route('view-budget')" :active="request()->routeIs('view-budget')">
                         {{ __('Edycja') }}
                     </x-nav-link>
                 </div>
@@ -81,7 +81,7 @@
             <x-responsive-nav-link :href="route('home')" :active="request()->routeIs('home')">
                 {{ __('Strona główna') }}
             </x-responsive-nav-link>
-            <x-responsive-nav-link :href="route('edit-budget')" :active="request()->routeIs('edit-budget')">
+            <x-responsive-nav-link :href="route('view-budget')" :active="request()->routeIs('view-budget')">
                 {{ __('Edycja') }}
             </x-responsive-nav-link>
         </div>

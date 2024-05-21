@@ -3,7 +3,7 @@
         <div class="p-6 text-gray-600 dark:text-gray-100">
             {{ __("Szybki dostęp") }}
         </div>
-        <div class="flex flex-col text-gray-600">
+        <div class="flex flex-col text-gray-400">
             @if (@isset($categories) && !$categories->isEmpty())
                 @foreach ($categories as $category)
                     <button>{{ $category }}</button>
@@ -17,7 +17,7 @@
         <div class="p-6 text-gray-600 dark:text-gray-100">
             {{ __("Wydatki w *miesiąc*") }}
         </div>
-        <div class="flex flex-col text-gray-600">
+        <div class="flex flex-col text-gray-400">
             @if (@isset($expences) && !$expences->isEmpty())
                 @foreach ($expences as $expence)
                     <p>{{ $expence->amount; }}</p>
@@ -32,12 +32,13 @@
         <div class="p-6 text-gray-600 dark:text-gray-100">
             {{ __("Cele") }}
         </div>
-        <div class="flex flex-col text-gray-600">
+        <div class="flex flex-col text-gray-400">
             @if (@isset($goals) && !$goals->isEmpty())
                 @foreach ($goals as $goal)
                     <p>{{ $goal->amount; }}</p>
                     <p>{{ $goal->content; }}</p>
                 @endforeach
+                <button>Edytuj cele</button>
             @else
                 <p>Brak wydatków dla twojego konta.</p>
             @endif
