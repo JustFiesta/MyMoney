@@ -29,5 +29,21 @@
     </div>
 
     @include('budget.view')
+    <script>
+        // Apply filters for category buttons and hide summary
+        function filterExpenses(category) {
+            const rows = document.querySelectorAll('.expense-row');
+            const summary = document.querySelector('.summary');
+            const incomeSummary = document.querySelector('.income-summary');
+            const balanceSummary = document.querySelector('.balance-summary');
 
+            rows.forEach(row => {
+                if (category === 'all' || row.dataset.category === category) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        }
+    </script>
 </x-app-layout>

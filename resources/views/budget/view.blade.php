@@ -1,3 +1,23 @@
+<div class="md:pl-6 md:pr-6 md:pb-6 rounded-full flex flex-col items-center lg:flex-row justify-between w-full text-center">
+    <div class="p-3 lg:p-6 text-gray-600 dark:text-gray-100">
+        <h2 class="font-bold text-xl">Kategorie</h2>
+    </div>
+    @if (isset($categories) && !$categories->isEmpty())
+        <button class="py-4 px-4 w-max text-lg rounded-full loginButton font-bold" onclick="filterExpenses('all')">Pokaż wszystko</button>
+
+        <div class="flex flex-wrap justify-center text-gray-400">
+            @foreach ($categories as $category)
+                <div class="p-2">
+                    <button class="py-4 px-4 text-lg w-full rounded-full bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onclick="filterExpenses('{{ $category }}')">{{ $category }}</button>
+                </div>
+            @endforeach
+        </div>
+        @else
+        <div class="flex flex-wrap text-gray-400">
+            <p>Brak kategorii dla twojego konta.</p>
+        </div>
+    @endif
+</div>
 <div class="md:pl-6 md:pr-6 md:pb-6 rounded-full flex flex-col lg:flex-row justify-between w-full text-center">
     <div class="bg-white dark:bg-gray-800 overflow-hidden w-full pb-6 lg:w-1/2">
         <div class="p-6 text-gray-600 dark:text-gray-100">
