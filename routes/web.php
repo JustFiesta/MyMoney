@@ -23,8 +23,8 @@ Route::put('/finances/{id}', [FinanceController::class, 'update'])->middleware([
 Route::get('/goals/create', [GoalController::class, 'create'])->middleware(['auth', 'verified'])->name('goals.add');
 Route::post('/goals', [GoalController::class, 'store'])->middleware(['auth', 'verified'])->name('goals.store');
 Route::delete('/goals/{id}', [GoalController::class, 'destroy'])->middleware(['auth', 'verified'])->name('goals.destroy');
-Route::post('/goals/{id}/edit', [GoalController::class, 'edit'])->middleware(['auth', 'verified'])->name('goals.edit');
-Route::post('/goals/{id}', [GoalController::class, 'update'])->middleware(['auth', 'verified'])->name('goals.update');
+Route::get('/goals/{id}/edit', [GoalController::class, 'edit'])->middleware(['auth', 'verified'])->name('goals.edit');
+Route::put('/goals/{id}', [GoalController::class, 'update'])->middleware(['auth', 'verified'])->name('goals.update');
 
 
 Route::middleware('auth')->group(function () {
