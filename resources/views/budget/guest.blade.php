@@ -77,9 +77,9 @@
                 <table class="bg-white dark:bg-gray-800">
                     <thead>
                         <tr>
-                            <th class="py-2 w-1/3 text-lg font-extrabold">Kwota</th>
-                            <th class="py-2 w-1/3 text-lg font-extrabold">Na co oszczędzamy?</th>
-                            <th class="py-2 w-1/3 text-lg font-extrabold">Akcje</th>
+                            <th class="py-2 w-1/3 text-lg font-extrabold underline">Kwota</th>
+                            <th class="py-2 w-1/3 text-lg font-extrabold underline">Na co oszczędzamy?</th>
+                            <th class="py-2 w-1/3 text-lg font-extrabold underline">Akcje</th>
                         </tr>
                     </thead>
                     <tbody>

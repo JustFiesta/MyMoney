@@ -28,9 +28,9 @@
                 <table class="bg-white dark:bg-gray-800">
                     <thead>
                         <tr>
-                            <th class="py-2 w-1/3 text-lg font-extrabold">Kwota</th>
-                            <th class="py-2 w-1/3 text-lg font-extrabold">Data</th>
-                            <th class="py-2 w-1/3 text-lg font-extrabold">Akcje</th>
+                            <th class="py-2 w-1/3 text-lg font-extrabold underline">Kwota</th>
+                            <th class="py-2 w-1/3 text-lg font-extrabold underline">Data</th>
+                            <th class="py-2 w-1/3 text-lg font-extrabold underline">Akcje</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -42,7 +42,7 @@
                                     <form action="{{ route('finances.destroy', $expence->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Are you sure?')" class="text-red-600 font-bold">Usuń</button>
+                                        <button type="submit" onclick="return confirm('Jesteś pewien?')" class="text-red-600 font-bold">Usuń</button>
                                     </form>
                                     <a href="{{ route('finances.edit', $expence->id) }}" class="text-blue-600 ml-2 font-bold">Edytuj</a>
                                 </td>
@@ -92,7 +92,7 @@
                                     <form action="{{ route('goals.destroy', $goal->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Are you sure?')" class="text-red-600 font-bold">Usuń</button>
+                                        <button type="submit" onclick="return confirm('Jesteś pewien?')" class="text-red-600 font-bold">Usuń</button>
                                     </form>
                                     <a href="{{ route('goals.edit', $goal->id) }}" class="text-blue-600 ml-2 font-bold">Edytuj</a>
                                 </td>
