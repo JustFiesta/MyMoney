@@ -59,7 +59,7 @@ class UserController extends Controller
             // Return view with finances and categories
             return view('welcome', [
                 'incomes' => $incomes,
-                'expenses' => $expences,
+                'expences' => $expences,
                 'categories' => $categories,
                 'totalExpenses' => $totalExpenses,
                 'totalIncomes' => $totalIncomes,
