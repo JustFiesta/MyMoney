@@ -76,17 +76,36 @@
         </div>
         @if (isset($goals) && !$goals->isEmpty())
             <div class="flex flex-wrap text-gray-400">
-                @foreach ($goals as $goal)
-                    <div class="w-1/2 p-2">
-                        <button class="py-4 px-2 text-lg w-full rounded-full bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onclick="filterExpenses('{{ $category }}')">{{ $category }}</button>
-                    </div>
-                @endforeach
+                <table class="bg-white dark:bg-gray-800">
+                    <thead>
+                        <tr>
+                            <th class="py-2 w-1/3 text-lg font-extrabold">Kwota</th>
+                            <th class="py-2 w-1/3 text-lg font-extrabold">Na co oszczędzamy?</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach ($goals as $goal)
+                            <tr class="goal-row">
+                                <td class="py-2 text-lg font-semibold">{{ $goal->amount }}</td>
+                                <td class="py-2 text-lg">{{ $goal->content }}</td>
+                                <td class="py-2 text-lg ">
+                                    <form action="{{ route('goals.destroy', $expence->id) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" onclick="return confirm('Are you sure?')" class="text-red-600 font-bold">Usuń</button>
+                                    </form>
+                                    <a href="{{ route('goals.edit', $expence->id) }}" class="text-blue-600 ml-2 font-bold">Edytuj</a>
+                                </td>
+                            </tr>
+                        @endforeach
+                    </tbody>
+                </table>
             </div>
             @else
             <div class="flex flex-wrap text-gray-400">
                 <p class="">Brak celów dla twojego konta.</p>
             </div>
         @endif
-        <button class="py-4 px-4 mt-2 w-max text-lg rounded-full loginButton font-bold" >Dodaj nowy cel!</button>
+        <a href="{{ route('goals.add') }}" class="py-4 px-4 mt-2 w-max text-lg rounded-full loginButton font-bold">Dodaj nowy cel!</a>
     </div>
 </div>
