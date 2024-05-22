@@ -1,4 +1,4 @@
-<div class="flex flex-col lg:flex-row justify-between w-full text-center">
+<div class="shadow-sm flex flex-col mx-auto lg:flex-row justify-between max-w-7xl text-center rounded-md">
     <div class="flex flex-col bg-white dark:bg-gray-800 overflow-hidden w-full lg:w-5/12 pb-2">
         <div class="p-3 lg:p-6 text-gray-600 dark:text-gray-100">
             <h2 class="font-bold text-xl">Szybki dostęp</h2>
