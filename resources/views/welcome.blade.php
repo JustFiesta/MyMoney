@@ -40,10 +40,12 @@
                 </div>
             @endif
         </div>
-        <div class="py-3 text-center font-bold text-xl border-b-2">
-            <h1>Przykładowy widok budżetu</h1>
-        </div>
-        @include('budget.index');
+        @guest
+            <div class="py-3 text-center font-bold text-xl border-b-2">
+                <h1>Przykładowy widok budżetu</h1>
+            </div>
+            @include('budget.guest')
+        @endguest
     </body>
 
     {{-- Script for filtering expences --}}
