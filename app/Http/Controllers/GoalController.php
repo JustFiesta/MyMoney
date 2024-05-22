@@ -44,6 +44,44 @@ class GoalController extends Controller
     }
 
     /**
+     * Redirect to edit goal form.
+     */
+    public function edit($id)
+    {
+        $goal = Goal::findOrFail($id);
+        return view('edit-goal', compact('goal'));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        // Validate inputs
+        $request->validate([
+            'amount' => 'required|numeric',
+            'content' => 'required|string|max:255',
+        ]);
+
+        // Find the goal by id
+        $goal = Goal::findOrFail($id);
+
+        // Update the goal
+        $goal->amount = $request->input('amount');
+        $goal->content = $request->input('content');
+
+        // Save the updated goal
+        $goal->save();
+
+        // Redirect back with success message
+        return redirect()->route('home')->with('success', 'Cel został zaktualizowany pomyślnie!');
+    }
+
+    /**
      * Remove resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
