@@ -17,8 +17,8 @@
     </div>
     @include('budget.index')
 
-    {{-- Script for filtering expences --}}
     <script>
+        // Apply filters for category buttons and hide summary
         function filterExpenses(category) {
             const rows = document.querySelectorAll('.expense-row');
             const summary = document.querySelector('.summary');
@@ -43,5 +43,23 @@
                 balanceSummary.style.display = 'none';
             }
         }
+
+        // Add listener for scroll position change
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            // Load previous scrolll position
+            if (localStorage.getItem('scrollPosition')) {
+                window.scrollTo(0, localStorage.getItem('scrollPosition'));
+                localStorage.removeItem('scrollPosition');
+            }
+
+            // Save scroll position
+            const editLinks = document.querySelectorAll('.edit-link');
+            editLinks.forEach(link => {
+                link.addEventListener('click', function () {
+                    localStorage.setItem('scrollPosition', window.scrollY);
+                });
+            });
+        });
     </script>
 </x-app-layout>
