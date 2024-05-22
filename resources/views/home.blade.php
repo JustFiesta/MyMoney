@@ -16,4 +16,32 @@
         </div>
     </div>
     @include('budget.index')
+
+    {{-- Script for filtering expences --}}
+    <script>
+        function filterExpenses(category) {
+            const rows = document.querySelectorAll('.expense-row');
+            const summary = document.querySelector('.summary');
+            const incomeSummary = document.querySelector('.income-summary');
+            const balanceSummary = document.querySelector('.balance-summary');
+
+            rows.forEach(row => {
+                if (category === 'all' || row.dataset.category === category) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+            if (category === 'all') {
+                summary.style.display = '';
+                incomeSummary.style.display = '';
+                balanceSummary.style.display = '';
+            } else {
+                summary.style.display = 'none';
+                incomeSummary.style.display = 'none';
+                balanceSummary.style.display = 'none';
+            }
+        }
+    </script>
 </x-app-layout>
