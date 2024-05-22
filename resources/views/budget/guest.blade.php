@@ -19,7 +19,7 @@
             </div>
         @endif
     </div>
-    <div class="flex flex-col items-center bg-white dark:bg-gray-800 overflow-hidden w-full pb-2 border-t-2 border-b-2 lg:border-t-0 lg:border-b-0 lg:border-l-2 lg:border-r-2 border-grey-600">
+    <div class="w-full flex flex-col items-center pb-2 bg-white dark:bg-gray-800 overflow-hidden border-t-2 border-b-2 lg:border-t-0 lg:border-b-0 lg:border-l-2 lg:border-r-2 border-grey-600">
         <div class="p-3 lg:p-6 text-gray-600 dark:text-gray-100">
             <h2 class="font-bold text-xl">Wydatki w {{ now()->translatedFormat('F') }}</h2>
         </div>
@@ -68,17 +68,18 @@
             </div>
         </div>
     </div>
-    <div class="flex flex-col items-center bg-white dark:bg-gray-800 overflow-hidden w-full lg:w-5/12 pb-2">
+    <div class="w-full flex flex-col items-center pb-2 bg-white dark:bg-gray-800 overflow-hidden">
         <div class="p-3 lg:p-6 text-gray-600 dark:text-gray-100">
             <h2 class="font-bold text-xl">Cele</h2>
         </div>
         @if (isset($goals) && !$goals->isEmpty())
-            <div class="flex flex-wrap text-gray-400">
+            <div class="flex flex-col w-full text-gray-400">
                 <table class="bg-white dark:bg-gray-800">
                     <thead>
                         <tr>
                             <th class="py-2 w-1/3 text-lg font-extrabold">Kwota</th>
                             <th class="py-2 w-1/3 text-lg font-extrabold">Na co oszczędzamy?</th>
+                            <th class="py-2 w-1/3 text-lg font-extrabold">Akcje</th>
                         </tr>
                     </thead>
                     <tbody>

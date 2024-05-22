@@ -70,12 +70,12 @@
             </div>
         </div>
     </div>
-    <div class="flex flex-col items-center bg-white dark:bg-gray-800 overflow-hidden w-full lg:w-5/12 pb-2">
+    <div class="w-full flex flex-col items-center pb-2 bg-white dark:bg-gray-800 overflow-hidden">
         <div class="p-3 lg:p-6 text-gray-600 dark:text-gray-100">
             <h2 class="font-bold text-xl">Cele</h2>
         </div>
         @if (isset($goals) && !$goals->isEmpty())
-            <div class="flex flex-wrap text-gray-400">
+            <div class="flex flex-col w-full text-gray-400">
                 <table class="bg-white dark:bg-gray-800">
                     <thead>
                         <tr>
