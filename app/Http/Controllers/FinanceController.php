@@ -21,11 +21,19 @@ class FinanceController extends Controller
             // Fetch expences and incomes
             $expences = $finances->where('type', 'outcome');
             $incomes = $finances->where('type', 'income');
+
+            // Calculate totals
+            $totalExpences = $expences->sum('amount');
+            $totalIncomes = $incomes->sum('amount');
+            $balance = $totalIncomes - $totalExpences;
             
             // Return view with finances
             return view('view-budget', [
                 'incomes' => $incomes,
                 'expences' => $expences,
+                'totalExpences' => $totalExpences,
+                'totalIncomes' => $totalIncomes,
+                'balance' => $balance
             ]);
         } else {
             // Redirect guests
@@ -37,11 +45,19 @@ class FinanceController extends Controller
             // Fetch expences and incomes
             $expences = $finances->where('type', 'outcome');
             $incomes = $finances->where('type', 'income');
+
+            // Calculate totals
+            $totalExpences = $expences->sum('amount');
+            $totalIncomes = $incomes->sum('amount');
+            $balance = $totalIncomes - $totalExpences;
             
             // Return view with finances
             return view('view-budget', [
                 'incomes' => $incomes,
                 'expences' => $expences,
+                'totalExpences' => $totalExpences,
+                'totalIncomes' => $totalIncomes,
+                'balance' => $balance
             ]);
         }
     }
