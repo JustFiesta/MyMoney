@@ -21,7 +21,7 @@
     </div>
     <div class="flex flex-col items-center bg-white dark:bg-gray-800 overflow-hidden w-full pb-2 border-t-2 border-b-2 lg:border-t-0 lg:border-b-0 lg:border-l-2 lg:border-r-2 border-grey-600">
         <div class="p-3 lg:p-6 text-gray-600 dark:text-gray-100">
-            <h2 class="font-bold text-xl">Wydatki w *miesiąc*</h2>
+            <h2 class="font-bold text-xl">Wydatki w {{ now()->translatedFormat('F') }}</h2>
         </div>
         <div class="flex flex-col w-full text-gray-400">
             @if (isset($expences) && !$expences->isEmpty())
