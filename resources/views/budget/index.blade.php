@@ -1,9 +1,11 @@
 <div class="shadow-sm flex flex-col mx-auto lg:flex-row justify-between max-w-7xl text-center rounded-md">
-    <div class="flex flex-col bg-white dark:bg-gray-800 overflow-hidden w-full lg:w-5/12 pb-2">
+    <div class="flex flex-col items-center bg-white dark:bg-gray-800 overflow-hidden w-full lg:w-5/12 pb-2">
         <div class="p-3 lg:p-6 text-gray-600 dark:text-gray-100">
             <h2 class="font-bold text-xl">Szybki dostęp</h2>
-            <button class="py-4 px-4 mt-2 w-max text-lg rounded-full loginButton font-bold" onclick="filterExpenses('all')">Pokaż wszystko</button>
         </div>
+
+        <button class="py-4 px-4 mt-2 w-max text-lg rounded-full loginButton font-bold" onclick="filterExpenses('all')">Pokaż wszystko</button>
+
         <div class="flex flex-wrap text-gray-400">
             @if (isset($categories) && !$categories->isEmpty())
                 @foreach ($categories as $category)
@@ -36,10 +38,12 @@
                                 <td class="py-2 text-lg font-semibold">{{ $expence->amount }}</td>
                                 <td class="py-2 text-lg">{{ $expence->created_at->format('d.m.Y') }}</td>
                                 <td class="py-2 text-lg ">
-                                    <form class="inline">
+                                    <form action="{{ route('finances.destroy', $expence->id) }}" method="POST" class="inline">
+                                        @csrf
+                                        @method('DELETE')
                                         <button type="submit" onclick="return confirm('Are you sure?')" class="text-red-600 font-bold">Usuń</button>
                                     </form>
-                                    <a href="#" class="text-blue-600 ml-2 font-bold">Edytuj</a>
+                                    <a href="{{ route('finances.edit', $expence->id) }}" class="text-blue-600 ml-2 font-bold">Edytuj</a>
                                 </td>
                             </tr>
                         @endforeach
