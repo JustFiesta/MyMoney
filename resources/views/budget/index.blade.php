@@ -6,9 +6,9 @@
         @if (isset($categories) && !$categories->isEmpty())
             <button class="py-4 px-4 mt-2 w-max text-lg rounded-full loginButton font-bold" onclick="filterExpenses('all')">Pokaż wszystko</button>
 
-            <div class="flex flex-wrap text-gray-400">
+            <div class="flex flex-wrap justify-center text-gray-400">
                 @foreach ($categories as $category)
-                    <div class="w-1/2 p-2">
+                    <div class="p-2">
                         <button class="py-4 px-2 text-lg w-full rounded-full bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onclick="filterExpenses('{{ $category }}')">{{ $category }}</button>
                     </div>
                 @endforeach
@@ -89,12 +89,12 @@
                                 <td class="py-2 text-lg font-semibold">{{ $goal->amount }}</td>
                                 <td class="py-2 text-lg">{{ $goal->content }}</td>
                                 <td class="py-2 text-lg ">
-                                    <form action="{{ route('goals.destroy', $expence->id) }}" method="POST" class="inline">
+                                    <form action="{{ route('goals.destroy', $goal->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" onclick="return confirm('Are you sure?')" class="text-red-600 font-bold">Usuń</button>
                                     </form>
-                                    <a href="{{ route('goals.edit', $expence->id) }}" class="text-blue-600 ml-2 font-bold">Edytuj</a>
+                                    <a href="{{ route('goals.edit', $goal->id) }}" class="text-blue-600 ml-2 font-bold">Edytuj</a>
                                 </td>
                             </tr>
                         @endforeach
