@@ -22,6 +22,9 @@ class FinanceController extends Controller
             $expences = $finances->where('type', 'outcome');
             $incomes = $finances->where('type', 'income');
 
+            // Fetch unique categories from expenses
+            $categories = $expences->pluck('category')->unique();
+
             // Calculate totals
             $totalExpences = $expences->sum('amount');
             $totalIncomes = $incomes->sum('amount');
@@ -31,34 +34,13 @@ class FinanceController extends Controller
             return view('view-budget', [
                 'incomes' => $incomes,
                 'expences' => $expences,
+                'categories' => $categories,
                 'totalExpences' => $totalExpences,
                 'totalIncomes' => $totalIncomes,
                 'balance' => $balance
             ]);
         } else {
-            // Redirect guests
-            $user = User::where("role_id", 3)->first(); 
-    
-            // Fetch user finances
-            $finances = $user->finances;
-
-            // Fetch expences and incomes
-            $expences = $finances->where('type', 'outcome');
-            $incomes = $finances->where('type', 'income');
-
-            // Calculate totals
-            $totalExpences = $expences->sum('amount');
-            $totalIncomes = $incomes->sum('amount');
-            $balance = $totalIncomes - $totalExpences;
-            
-            // Return view with finances
-            return view('view-budget', [
-                'incomes' => $incomes,
-                'expences' => $expences,
-                'totalExpences' => $totalExpences,
-                'totalIncomes' => $totalIncomes,
-                'balance' => $balance
-            ]);
+            return redirect()->route('home');
         }
     }
 
