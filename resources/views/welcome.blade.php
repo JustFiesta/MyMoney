@@ -18,7 +18,7 @@
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
     <body class="antialiased">
-        <div class="flex flex-col justify-center items-center min-h-screen bg-gray-50 lg:max-h-screen dark:bg-black">
+        <div class="flex flex-col justify-center items-center pb-4 min-h-screen bg-gray-50 lg:max-h-screen dark:bg-black">
             <x-application-logo class="w-52" />
             @if (Route::has('login'))
                 <div class="flex flex-col justify-center items-center mt-10 w-full gap-2 md:w-2/5 dark:text-gray-50">
