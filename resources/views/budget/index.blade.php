@@ -70,20 +70,23 @@
             </div>
         </div>
     </div>
-    <div class="bg-white dark:bg-gray-800 overflow-hidden w-full lg:w-5/12 pb-2">
+    <div class="flex flex-col items-center bg-white dark:bg-gray-800 overflow-hidden w-full lg:w-5/12 pb-2">
         <div class="p-3 lg:p-6 text-gray-600 dark:text-gray-100">
             <h2 class="font-bold text-xl">Cele</h2>
         </div>
-        <div class="flex flex-col text-gray-400">
-            @if (@isset($goals) && !$goals->isEmpty())
+        @if (isset($goals) && !$goals->isEmpty())
+            <div class="flex flex-wrap text-gray-400">
                 @foreach ($goals as $goal)
-                    <p>{{ $goal->amount }}</p>
-                    <p>{{ $goal->content }}</p>
+                    <div class="w-1/2 p-2">
+                        <button class="py-4 px-2 text-lg w-full rounded-full bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onclick="filterExpenses('{{ $category }}')">{{ $category }}</button>
+                    </div>
                 @endforeach
-                <button>Edytuj cele</button>
+            </div>
             @else
-                <p>Brak celów dla twojego konta.</p>
-            @endif
-        </div>
+            <div class="flex flex-wrap text-gray-400">
+                <p class="">Brak celów dla twojego konta.</p>
+            </div>
+        @endif
+        <button class="py-4 px-4 mt-2 w-max text-lg rounded-full loginButton font-bold" >Dodaj nowy cel!</button>
     </div>
 </div>
