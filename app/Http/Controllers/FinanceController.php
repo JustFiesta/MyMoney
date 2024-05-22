@@ -24,20 +24,12 @@ class FinanceController extends Controller
 
             // Fetch unique categories from expenses
             $categories = $expences->pluck('category')->unique();
-
-            // Calculate totals
-            $totalExpences = $expences->sum('amount');
-            $totalIncomes = $incomes->sum('amount');
-            $balance = $totalIncomes - $totalExpences;
             
             // Return view with finances
             return view('view-budget', [
                 'incomes' => $incomes,
                 'expences' => $expences,
-                'categories' => $categories,
-                'totalExpences' => $totalExpences,
-                'totalIncomes' => $totalIncomes,
-                'balance' => $balance
+                'categories' => $categories
             ]);
         } else {
             return redirect()->route('home');
