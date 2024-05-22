@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-black-900 dark:text-gray-100 leading-tight">
-            {{ __('Cześć') }}, {{ Auth::user()->login }}
+            {{ __('Cześć') }}, {{ Auth::user()->login }}, tutaj są twoje ostatnie wydatki.
         </h2>
     </x-slot>
 
