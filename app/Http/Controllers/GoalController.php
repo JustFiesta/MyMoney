@@ -66,7 +66,7 @@ class GoalController extends Controller
             'amount' => 'required|numeric',
             'content' => 'required|string|max:255',
         ]);
-
+        
         // Find the goal by id
         $goal = Goal::findOrFail($id);
 

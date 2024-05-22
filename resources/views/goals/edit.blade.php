@@ -10,8 +10,8 @@
                         <input type="number" id="amount" name="amount" class="mt-1 block w-full pl-3 pr-3 py-2 bg-inherit border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" value="{{ $goal->amount }}" required>
                     </div>
                     <div class="mb-4">
-                        <label for="category" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Cel</label>
-                        <input type="text" id="category" name="category" class="mt-1 block w-full pl-3 pr-3 py-2 bg-inherit border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" value="{{ $goal->content }}" required>
+                        <label for="content" class="block text-sm font-medium text-gray-700 dark:text-gray-300">Cel</label>
+                        <input type="text" id="content" name="content" class="mt-1 block w-full pl-3 pr-3 py-2 bg-inherit border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" value="{{ $goal->content }}" required>
                     </div>
                     <div class="flex items-center justify-end">
                         <button type="submit" class="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
