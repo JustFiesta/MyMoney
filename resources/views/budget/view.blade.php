@@ -1,6 +1,6 @@
 {{-- CATEGORIES --}}
-<div class="md:pl-6 md:pr-6 md:pb-2 flex flex-col lg:flex-row justify-between w-full text-center">
-    <div class="flex flex-col lg:flex-row justify-between items-center sm:rounded-lg bg-white dark:bg-gray-800 w-full text-center">
+<div class="mb-2 md:pl-6 md:pr-6 md:pb-2 flex flex-col lg:flex-row justify-between w-full text-center">
+    <div class="flex flex-col lg:flex-row justify-between items-center md:rounded-lg bg-white dark:bg-gray-800 w-full text-center">
         <div class="p-3 lg:p-6 text-gray-600 dark:text-gray-100">
             <h2 class="font-bold text-xl">Szybki dostęp</h2>
         </div>
@@ -23,10 +23,10 @@
 </div>
 
 {{-- EXPENCES --}}
-<div class="md:pl-6 md:pr-6 md:pb-2 flex flex-col lg:flex-row justify-between w-full text-center">
+<div class="mb-2 md:pl-6 md:pr-6 md:pb-2 flex flex-col lg:flex-row justify-between w-full text-center">
 
     {{-- INCOME --}}
-    <div class="bg-white dark:bg-gray-800 sm:rounded-lg overflow-hidden w-full pb-6 lg:w-1/2 border-t-2 lg:border-t-0 border-grey-600">
+    <div class="mb-2 lg:mb-0 bg-white dark:bg-gray-800 md:rounded-lg overflow-hidden w-full pb-6 lg:w-1/2">
         <div class="pb-3 text-gray-600 dark:text-gray-100">
             <div class="p-3 lg:p-6 text-gray-600 dark:text-gray-100">
                 <h2 class="font-bold text-xl">Przychody</h2>
@@ -69,7 +69,7 @@
     </div>
 
     {{-- OUTCOME --}}
-    <div class="bg-white dark:bg-gray-800 overflow-hidden sm:rounded-lg w-full pb-6 lg:w-1/2 border-t-2 lg:ml-1 lg:border-t-0 border-grey-600">
+    <div class="bg-white dark:bg-gray-800 overflow-hidden md:rounded-lg w-full pb-6 lg:w-1/2 lg:ml-1">
         <div class="p-3 text-gray-600 dark:text-gray-100">
             <div class="p-3 lg:p-6 text-gray-600 dark:text-gray-100">
                 <h2 class="font-bold text-xl">Wydatki</h2>

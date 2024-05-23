@@ -1,7 +1,7 @@
 <div class="md:pl-6 md:pr-6 md:pb-2 flex flex-col lg:flex-row justify-between w-full text-center">
     
     {{-- CATEGORIES --}}
-    <div class="flex flex-col items-center rounded-lg bg-white dark:bg-gray-800 overflow-hidden w-full lg:w-5/12 pb-2">
+    <div class="pb-2 flex flex-col items-center md:rounded-lg bg-white dark:bg-gray-800 overflow-hidden w-full lg:w-5/12">
         <div class="p-3 lg:p-6 text-gray-600 dark:text-gray-100">
             <h2 class="font-bold text-xl">Szybki dostęp</h2>
         </div>
@@ -23,7 +23,7 @@
     </div>
 
     {{-- EXPENCES --}}
-    <div class="flex flex-col items-center rounded-lg bg-white dark:bg-gray-800 overflow-hidden w-full pb-2 border-t-2 border-b-2 lg:border-t-0 lg:border-b-0 lg:border-l-2 lg:border-r-2 border-grey-600">
+    <div class="my-2 lg:my-0 mt-2 ml-0 lg:ml-1 pb-2 flex flex-col items-center bg-white dark:bg-gray-800 overflow-hidden md:rounded-lg w-full lg:w-1/2 border-grey-600">
         <div class="p-3 lg:p-6 text-gray-600 dark:text-gray-100">
             <h2 class="font-bold text-xl">Wydatki w {{ now()->translatedFormat('F') }}</h2>
         </div>
@@ -62,7 +62,7 @@
         </div>
         
         {{-- SUMMARY --}}
-        <div class="summary mt-4 w-9/12 sm:rounded-lg">
+        <div class="summary mt-4 w-9/12 md:rounded-lg">
             <div class="bg-gray-50 dark:bg-gray-700 overflow-hidden shadow-sm rounded-lg">
                 <div class="p-6 text-gray-600 dark:text-gray-100">
                     <div class="flex justify-between py-1">
@@ -75,7 +75,7 @@
     </div>
 
     {{-- GOALS --}}
-    <div class="w-full flex flex-col items-center pb-2 rounded-lg bg-white dark:bg-gray-800 overflow-hidden">
+    <div class="ml-0 lg:ml-1 flex flex-col items-center pb-2 md:rounded-lg bg-white dark:bg-gray-800 overflow-hidden">
         <div class="p-3 lg:p-6 text-gray-600 dark:text-gray-100">
             <h2 class="font-bold text-xl">Cele</h2>
         </div>

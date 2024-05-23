@@ -7,7 +7,7 @@
 
     <div class="py-2 md:py-4 lg:py-4">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm md:rounded-lg">
+            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="flex items-center justify-between p-3 md:p-6 lg:p-6 text-black-900 dark:text-gray-300">
                     <p>Okres rozliczeniowy: {{ now()->translatedFormat('F') }}</p>
                     ikona kalendarza
@@ -33,7 +33,7 @@
     @include('budget.view')
 
     {{-- SUMMARY --}}
-    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 border-t-2 lg:border-t-0">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm md:rounded-lg">
             <div class="p-6 text-gray-600 dark:text-gray-100">
                 <div class="flex justify-between py-1">
