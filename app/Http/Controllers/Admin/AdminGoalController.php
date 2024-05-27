@@ -6,6 +6,7 @@ use App\Models\Goal;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class AdminGoalController extends Controller
 {
@@ -14,7 +15,13 @@ class AdminGoalController extends Controller
      */
     public function index()
     {
-        $goals = Goal::all();
+        // Get current user id
+        $loggedInUserId = Auth::id();
+
+        // Get goals from db excluding first admin, current user and anonim
+        $goals = Goal::whereNotIn('id', [1, 2, $loggedInUserId])
+                 ->get();
+
         return view('admin.goals.index', compact('goals'));
     }
 
