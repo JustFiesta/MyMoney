@@ -14,10 +14,10 @@ Route::get('/', [UserController::class, 'index']);
 
 Route::get('/home', [UserController::class, 'index'])->middleware(['auth', 'verified'])->name('home');
 
-Route::get('/view-budget', [FinanceController::class, 'index'])->middleware(['auth', 'verified'])->name('view-budget');
 
 // Finances CRUD routes
 Route::middleware('auth')->group(function () {
+    Route::get('/finances', [FinanceController::class, 'index'])->name('finances');
     Route::get('/finances/create', [FinanceController::class, 'create'])->name('finances.create');
     Route::post('/finances', [FinanceController::class, 'store'])->name('finances.store');
     Route::delete('/finances/{id}', [FinanceController::class, 'destroy'])->name('finances.destroy');
@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
     Route::put('/finances/{id}', [FinanceController::class, 'update'])->name('finances.update');
 });
 
-// Goals CRUD routes (read is placed in finances)
+// Goals CRUD routes
 Route::middleware('auth')->group(function () {
     Route::get('/goals/create', [GoalController::class, 'create'])->name('goals.add');
     Route::post('/goals', [GoalController::class, 'store'])->name('goals.store');
@@ -42,9 +42,9 @@ Route::middleware('auth')->group(function () {
         Route::get('/admin/users', [AdminUserController::class, 'index'])->name('admin.users');
         Route::get('/admin/users/create', [AdminUserController::class, 'create'])->name('admin.user.create');
         Route::post('/admin/users', [AdminUserController::class, 'store'])->name('admin.user.store');
-        Route::get('/admin/users/{id}/edit', [AdminUserController::class, 'edit'])->name('admin.user.edit');
-        Route::put('/admin/users/{id}', [AdminUserController::class, 'update'])->name('admin.user.update');
-        Route::delete('/admin/users/delete/{user}', [AdminUserController::class, 'destroy'])->name('admin.user.destroy');
+        Route::get('/admin/users/{user}/edit', [AdminUserController::class, 'edit'])->name('admin.user.edit');
+        Route::put('/admin/users/{user}', [AdminUserController::class, 'update'])->name('admin.user.update');
+        Route::delete('/admin/users/{user}', [AdminUserController::class, 'destroy'])->name('admin.user.destroy');
 
         // Routes for CRUD - finances table
         Route::get('/admin/users/finances', [AdminFinanceController::class, 'index'])->name('admin.finances');
