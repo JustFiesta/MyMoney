@@ -99,4 +99,31 @@ class FinanceController extends Controller
         // Redirect back to the view budget page with a success message
         return redirect()->route('finances');
     }
+
+    public function filterByDate(Request $request)
+    {
+        $dateRange = $request->input('date_range');
+        $dates = explode(' to ', $dateRange);
+    
+        if (count($dates) === 2) {
+            $startDate = $dates[0];
+            $endDate = $dates[1];
+        } else {
+            $startDate = $dates[0];
+            $endDate = $dates[0];
+        }
+    
+        $finances = Finance::where('user_id', auth()->id())
+            ->where('type', 'outcome')
+            ->whereBetween('created_at', [$startDate, $endDate])
+            ->orderBy('created_at', 'DESC')
+            ->get();
+    
+        $categories = $finances->pluck('category')->unique();
+    
+        return view('home', [
+            'finances' => $finances,
+            'categories' => $categories
+        ]);
+    }
 }
