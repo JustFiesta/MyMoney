@@ -34,6 +34,9 @@ Route::middleware('auth')->group(function () {
     Route::put('/goals/{id}', [GoalController::class, 'update'])->name('goals.update');
 });
 
+// Filter finances
+Route::get('/finances/filter', [FinanceController::class, 'filterByDate'])->middleware(['auth', 'verified'])->name('finances.filterByDate');
+
 // Admin crud routes
 Route::middleware('auth')->group(function () {
     Route::middleware([Middleware::class])->group(function () {
