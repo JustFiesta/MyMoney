@@ -62,6 +62,10 @@
                         @endforeach
                     </tbody>
                 </table>
+            
+                <div class="mt-4">
+                    {{ $expences->links() }}
+                </div>
             @else
                 <p>Brak przychodów dla twojego konta.</p>
             @endif
@@ -105,6 +109,10 @@
                         @endforeach
                     </tbody>
                 </table>
+
+                <div class="mt-4">
+                    {{ $expences->links() }}
+                </div>
             @else
                 <p>Brak wydatków dla twojego konta.</p>
             @endif
