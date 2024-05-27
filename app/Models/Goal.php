@@ -31,6 +31,7 @@ class Goal extends Model
     protected $fillable = [
         'amount',
         'content',
+        'user_id', // Dodaj to pole do listy atrybutów masowego przypisania
     ];
 
     /**
