@@ -5,19 +5,10 @@
         </h2>
     </x-slot>
 
-    <div class="py-2 md:py-4 lg:py-4">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="flex items-center justify-between p-3 md:p-6 lg:p-6 text-black-900 dark:text-gray-300">
-                    <p>Okres rozliczeniowy: {{ now()->translatedFormat('F') }}</p>
-                    ikona kalendarza
-                </div>
-            </div>
-        </div>
-    </div>
+    @include('budget.billing-period')
     
     @include('budget.index')
-
+    
     {{-- HIDDEN FOR CALCULATIONS AND PUSH TO BUDGET.INDEX --}}
     <div class="hidden">
         <div>
