@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Goal;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -13,7 +14,8 @@ class AdminGoalController extends Controller
      */
     public function index()
     {
-        //
+        $goals = Goal::all();
+        return view('admin.goals.index', compact('goals'));
     }
 
     /**
@@ -21,7 +23,7 @@ class AdminGoalController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.goals.create');
     }
 
     /**
@@ -29,15 +31,28 @@ class AdminGoalController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Goal $goal)
-    {
-        //
+        $userExists = User::where('id', $request->user_id)->exists();
+
+        if (!$userExists) {
+            return redirect()->back()->with('error', 'Użytkownik o podanym ID nie istnieje.');
+        }
+
+        $request->validate([
+            'amount' => 'required|numeric',
+            'content' => 'nullable|string',
+            'user_id' => 'required|exists:users,id'
+        ], [
+            'user_id.exists' => 'Nie znaleziono użytkownika o podanym ID.'
+        ]);
+
+        Goal::create([
+            'amount' => $request->amount,
+            'content' => $request->content,
+            'user_id' => $request->user_id
+        ]);
+
+        return redirect()->route('admin.goals')->with('success', 'Pomyślnie dodano cel.');
     }
 
     /**
@@ -45,7 +60,7 @@ class AdminGoalController extends Controller
      */
     public function edit(Goal $goal)
     {
-        //
+        return view('admin.goals.edit', compact('goal'));
     }
 
     /**
@@ -53,7 +68,17 @@ class AdminGoalController extends Controller
      */
     public function update(Request $request, Goal $goal)
     {
-        //
+        $request->validate([
+            'amount' => 'required|numeric',
+            'content' => 'nullable|string',
+        ]);
+
+        $goal->update([
+            'amount' => $request->amount,
+            'content' => $request->content,
+        ]);
+
+        return redirect()->route('admin.goals')->with('success', 'Pomyślnie zaktualizowano cel.');
     }
 
     /**
@@ -61,6 +86,7 @@ class AdminGoalController extends Controller
      */
     public function destroy(Goal $goal)
     {
-        //
+        $goal->delete();
+        return redirect()->route('admin.goals')->with('success', 'Pomyślnie usunięto cel.');
     }
 }
