@@ -11,7 +11,7 @@
             <div class="flex flex-wrap justify-center text-gray-400">
                 @foreach ($categories as $category)
                     <div class="p-2">
-                        <button class="py-4 px-4 text-lg w-full rounded-full bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onclick="filterExpenses('{{ $category }}')">{{ $category }}</button>
+                        <button class="categoryButton" onclick="filterExpenses('{{ $category }}')">{{ $category }}</button>
                     </div>
                 @endforeach
             </div>
@@ -48,9 +48,9 @@
                                     <form action="{{ route('finances.destroy', $expence->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Jesteś pewien?')" class="text-red-600 font-bold">Usuń</button>
+                                        <button type="submit" onclick="return confirm('Jesteś pewien?')" class="deleteButton">Usuń</button>
                                     </form>
-                                    <a href="{{ route('finances.edit', $expence->id) }}" class="text-blue-600 ml-2 font-bold">Edytuj</a>
+                                    <a href="{{ route('finances.edit', $expence->id) }}" class="editButton">Edytuj</a>
                                 </td>
                             </tr>
                         @endforeach
