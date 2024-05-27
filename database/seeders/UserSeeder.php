@@ -25,6 +25,15 @@ class UserSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ]);
 
+        User::create([
+            'login' => 'anonim',
+            'email' => 'anonim@example.com',
+            'password' => Hash::make('password'),
+            'role_id' => 3, 
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+
         for ($i = 1; $i <= 6; $i++) {
             User::create([
                 'login' => 'user'.$i,
@@ -35,14 +44,5 @@ class UserSeeder extends Seeder
                 'updated_at' => Carbon::now(),
             ]);
         }
-
-        User::create([
-            'login' => 'anonim',
-            'email' => 'anonim@example.com',
-            'password' => Hash::make('password'),
-            'role_id' => 3, 
-            'created_at' => Carbon::now(),
-            'updated_at' => Carbon::now(),
-        ]);
     }
 }
