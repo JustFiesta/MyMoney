@@ -16,7 +16,7 @@ class AdminUserController extends Controller
     public function index()
     {
         $users = User::all();
-        return view('admin.userCRUD', compact('users'));
+        return view('admin.users.index', compact('users'));
     }
 
     // Metoda do dodawania nowego użytkownika
@@ -52,7 +52,7 @@ class AdminUserController extends Controller
         $user->save();
 
         // Przekierowanie po dodaniu użytkownika
-        return redirect()->route('userCRUD')->with('success', 'User added successfully.');
+        return redirect()->route('admin.users.index')->with('success', 'User added successfully.');
     }
 
     public function update(Request $request)
@@ -95,7 +95,7 @@ class AdminUserController extends Controller
     $user->fill($userData);
     $user->save();
 
-    return redirect()->route('userCRUD')->with('success', 'User updated successfully.');
+    return redirect()->route('admin.users.index')->with('success', 'User updated successfully.');
     }
 
 
@@ -104,17 +104,17 @@ class AdminUserController extends Controller
         try
         {
             $user->delete();
-            return redirect()->route('userCRUD')->with('success', 'User deleted successfully.');
+            return redirect()->route('admin.users.index')->with('success', 'User deleted successfully.');
         }
         catch (\Illuminate\Database\QueryException $e)
         {
             if ($e->getCode() === '23000')
             {
-                return redirect()->route('userCRUD')->with('error', 'Cannot delete user with existing reservations.');
+                return redirect()->route('admin.users.index')->with('error', 'Cannot delete user with existing stuff.');
             } 
             else
             {
-                return redirect()->route('userCRUD')->with('error', 'An unexpected error occurred.');
+                return redirect()->route('admin.users.index')->with('error', 'An unexpected error occurred.');
             }
         }
     }
