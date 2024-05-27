@@ -38,7 +38,7 @@ Route::middleware('auth')->group(function () {
 
         // Routes for CRUD - user table 
         Route::get('/admin/users', [AdminUserController::class, 'index'])->name('admin.users');
-        Route::get('/admin/users', [AdminUserController::class, 'create'])->name('admin.user.create');
+        Route::get('/admin/users/create', [AdminUserController::class, 'create'])->name('admin.user.create');
         Route::post('/admin/users', [AdminUserController::class, 'store'])->name('admin.user.store');
         Route::get('/admin/users/{id}/edit', [AdminUserController::class, 'edit'])->name('admin.user.edit');
         Route::put('/admin/users/{id}', [AdminUserController::class, 'update'])->name('admin.user.update');
