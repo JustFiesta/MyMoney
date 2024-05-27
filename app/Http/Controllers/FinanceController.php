@@ -19,8 +19,15 @@ class FinanceController extends Controller
             $finances = $user->finances;
 
             // Fetch expences and incomes
-            $expences = $finances->where('type', 'outcome');
-            $incomes = $finances->where('type', 'income');
+            $expences = Finance::where('user_id', $user->id)
+            ->where('type', 'outcome')
+            ->orderBy('created_at', 'DESC')
+            ->paginate(10);
+
+            $incomes = Finance::where('user_id', $user->id)
+            ->where('type', 'income')
+            ->orderBy('created_at', 'DESC')
+            ->paginate(10);
 
             // Fetch unique categories from expenses
             $categories = $finances->pluck('category')->unique();
@@ -41,7 +48,7 @@ class FinanceController extends Controller
         return view('add-budget');
     }
 
-        public function edit($id)
+    public function edit($id)
     {
         $finance = Finance::findOrFail($id);
 
