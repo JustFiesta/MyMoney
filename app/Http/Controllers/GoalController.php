@@ -78,7 +78,7 @@ class GoalController extends Controller
         $goal->save();
 
         // Redirect back with success message
-        return redirect()->route('home')->with('success', 'Cel został zaktualizowany pomyślnie!');
+        return redirect()->route('home');
     }
 
     /**
@@ -94,6 +94,6 @@ class GoalController extends Controller
         $goal->delete();
 
         // Redirect back to the view budget page with a success message
-        return redirect()->route('home')->with('status', 'Goal deleted successfully!');
+        return redirect()->route('home');
     }
 }
