@@ -34,6 +34,12 @@
                             </label>
                             <textarea name="content" id="content" class="formField">{{ old('content', $goal->content) }}</textarea>
                         </div>
+                        <div class="mb-4">
+                            <label class="formLabel" for="user_id">
+                                ID użytkownika
+                            </label>
+                            <input type="number" name="user_id" id="user_id" value="{{ old('user_id', $finance->user_id) }}" class="formField">
+                        </div>
                         <div class="mt-4 flex items-center justify-end">
                             <button onclick="window.location='{{ route('admin.goals') }}'" class="inline-flex items-center cancelButton">
                                 Anuluj
