@@ -10,7 +10,7 @@
             <div class="flex flex-wrap justify-center text-gray-400">
                 @foreach ($categories as $category)
                     <div class="p-2">
-                        <button class="py-4 px-4 text-lg w-full rounded-full bg-indigo-600 text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" onclick="filterExpenses('{{ $category }}')">{{ $category }}</button>
+                        <button class="categoryButton" onclick="filterExpenses('{{ $category }}')">{{ $category }}</button>
                     </div>
                 @endforeach
             </div>
@@ -31,7 +31,7 @@
             <div class="p-3 lg:p-6 text-gray-600 dark:text-gray-100">
                 <h2 class="font-bold text-xl">Przychody</h2>
             </div>
-            <a href="{{ route('finances.create') }}" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition ease-in-out duration-150">Dodaj</a>
+            <a href="{{ route('finances.create') }}" class="actionButton">Dodaj</a>
         </div>
         <div class="flex flex-col w-full text-gray-400">
             @if (isset($incomes) && !$incomes->isEmpty())
@@ -54,9 +54,9 @@
                                     <form action="{{ route('finances.destroy', $income->id) }}" method="POST" class="inline">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" onclick="return confirm('Jesteś pewien?')" class="text-red-600 font-bold">Usuń</button>
+                                        <button type="submit" onclick="return confirm('Jesteś pewien?')" class="deleteButton">Usuń</button>
                                     </form>
-                                    <a href="{{ route('finances.edit', $income->id) }}" class="text-blue-600 ml-2 font-bold">Edytuj</a>
+                                    <a href="{{ route('finances.edit', $income->id) }}" class="editButton">Edytuj</a>
                                 </td>
                             </tr>
                         @endforeach
@@ -74,7 +74,7 @@
             <div class="p-3 lg:p-6 text-gray-600 dark:text-gray-100">
                 <h2 class="font-bold text-xl">Wydatki</h2>
             </div>
-            <a href="{{ route('finances.create') }}" class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition ease-in-out duration-150">Dodaj</a>
+            <a href="{{ route('finances.create') }}" class="actionButton">Dodaj</a>
         </div>
         <div class="flex flex-col w-full text-gray-400">
             @if (isset($expences) && !$expences->isEmpty())
