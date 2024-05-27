@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Finance;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Finance;
+use Illuminate\Support\Facades\Auth;
 
 class AdminFinanceController extends Controller
 {
@@ -13,7 +14,14 @@ class AdminFinanceController extends Controller
      */
     public function index()
     {
-        //
+        // Get current user id
+        $loggedInUserId = Auth::id();
+
+        // Get goals from db excluding first admin, current user and anonim
+        $finances = Finance::whereNotIn('id', [1, 2, $loggedInUserId])
+                    ->get();
+
+        return view('admin.finances.index', compact('finances'));
     }
 
     /**
@@ -21,7 +29,7 @@ class AdminFinanceController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.finances.create');
     }
 
     /**
@@ -29,15 +37,21 @@ class AdminFinanceController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $request->validate([
+            'amount' => 'required|numeric',
+            'type' => 'required|in:income,outcome',
+            'category' => 'required|string',
+            'user_id' => 'required|exists:users,id'
+        ]);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Finance $finance)
-    {
-        //
+        Finance::create([
+            'amount' => $request->amount,
+            'type' => $request->type,
+            'category' => $request->category,
+            'user_id' => $request->user_id
+        ]);
+
+        return redirect()->route('admin.finances')->with('success', 'Pomyślnie dodano finanse.');
     }
 
     /**
@@ -45,7 +59,7 @@ class AdminFinanceController extends Controller
      */
     public function edit(Finance $finance)
     {
-        //
+        return view('admin.finances.edit', compact('finance'));
     }
 
     /**
@@ -53,7 +67,21 @@ class AdminFinanceController extends Controller
      */
     public function update(Request $request, Finance $finance)
     {
-        //
+        $request->validate([
+            'amount' => 'required|numeric',
+            'type' => 'required|in:income,outcome',
+            'category' => 'required|string',
+            'user_id' => 'required|exists:users,id'
+        ]);
+
+        $finance->update([
+            'amount' => $request->amount,
+            'type' => $request->type,
+            'category' => $request->category,
+            'user_id' => $request->user_id
+        ]);
+
+        return redirect()->route('admin.finances')->with('success', 'Pomyślnie zaktualizowano finanse.');
     }
 
     /**
@@ -61,6 +89,7 @@ class AdminFinanceController extends Controller
      */
     public function destroy(Finance $finance)
     {
-        //
+        $finance->delete();
+        return redirect()->route('admin.finances')->with('success', 'Pomyślnie usunięto finanse.');
     }
 }
