@@ -23,7 +23,7 @@ class FinanceController extends Controller
             $incomes = $finances->where('type', 'income');
 
             // Fetch unique categories from expenses
-            $categories = $expences->pluck('category')->unique();
+            $categories = $finances->pluck('category')->unique();
             
             // Return view with finances
             return view('view-budget', [
@@ -62,7 +62,7 @@ class FinanceController extends Controller
         $finance->category = $request->category;
         $finance->save();
 
-        return redirect()->route('view-budget')->with('status', 'Finance updated successfully!');
+        return redirect()->route('view-budget');
     }
 
     public function store(Request $request)
@@ -80,7 +80,7 @@ class FinanceController extends Controller
         $finance->category = $request->category;
         $finance->save();
 
-        return redirect()->route('view-budget')->with('status', 'Finance added successfully!');
+        return redirect()->route('view-budget');
     }
 
     public function destroy($id)
@@ -90,6 +90,6 @@ class FinanceController extends Controller
         $finance->delete();
 
         // Redirect back to the view budget page with a success message
-        return redirect()->route('view-budget')->with('status', 'Finance deleted successfully!');
+        return redirect()->route('view-budget');
     }
 }
