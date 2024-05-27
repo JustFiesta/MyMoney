@@ -22,12 +22,12 @@ class FinanceController extends Controller
             $expences = Finance::where('user_id', $user->id)
             ->where('type', 'outcome')
             ->orderBy('created_at', 'DESC')
-            ->paginate(10);
+            ->get();
 
             $incomes = Finance::where('user_id', $user->id)
             ->where('type', 'income')
             ->orderBy('created_at', 'DESC')
-            ->paginate(10);
+            ->get();
 
             // Fetch unique categories from expenses
             $categories = $finances->pluck('category')->unique();
