@@ -1,0 +1,121 @@
+<?php
+
+namespace App\Http\Controllers\Auth;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
+
+
+class AdminUserController extends Controller
+{
+    public function index()
+    {
+        $users = User::all();
+        return view('admin.userCRUD', compact('users'));
+    }
+
+    // Metoda do dodawania nowego użytkownika
+    public function store(Request $request)
+    {
+        // Walidacja danych przesłanych z formularza
+        $request->validate([
+            'login' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:5',
+            'role' => 'required|string|in:user,admin',
+        ]);
+
+        // Sprawdzenie, czy e-mail jest unikalny
+        $validator = Validator::make($request->all(), [
+            'email' => 'unique:users,email'
+        ]);
+
+        // Jeśli e-mail nie jest unikalny, zwróć błąd
+        if ($validator->fails()) {
+            return back()->withErrors(['email' => 'Konto z takim adresem email już istnieje!'])->withInput();
+        }
+
+
+        // Tworzenie nowego użytkownika na podstawie danych z formularza
+        $user = new User();
+        $user->login = $request->login;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->role = $request->role;
+
+        // Zapisanie nowego użytkownika do bazy danych
+        $user->save();
+
+        // Przekierowanie po dodaniu użytkownika
+        return redirect()->route('userCRUD')->with('success', 'User added successfully.');
+    }
+
+    public function update(Request $request)
+    {
+    // Debugowanie - wyświetl dane żądania
+    $user = User::findOrFail($request->id);
+    dd($user);
+
+    // Usunięcie pola 'role' z danych wejściowych
+    $requestData = $request->except('role');
+
+    $validatedData = Validator::make($requestData, [
+        'login' => 'required|string|max:255',
+        'email' => [
+            'required',
+            'string',
+            'email',
+            'max:255',
+            Rule::unique('users')->ignore($user->id),
+        ],
+        'password' => 'nullable|string|min:5',
+    ]);
+
+    if ($validatedData->fails()) {
+        return redirect()->back()->withErrors($validatedData)->withInput();
+    }
+
+    $userData = [
+        'login' => $request->name,
+        'email' => $request->email,
+    ];
+
+    if ($request->filled('password')) {
+        $hashedPassword = Hash::make($request->input('password'));
+        $userData['password'] = $hashedPassword;
+    }
+
+    $user->role_id = $request->role_id == 1 ? 1 : 2;
+
+    $user->fill($userData);
+    $user->save();
+
+    return redirect()->route('userCRUD')->with('success', 'User updated successfully.');
+    }
+
+
+    public function destroy(User $user)
+    {
+        try
+        {
+            $user->delete();
+            return redirect()->route('userCRUD')->with('success', 'User deleted successfully.');
+        }
+        catch (\Illuminate\Database\QueryException $e)
+        {
+            if ($e->getCode() === '23000')
+            {
+                return redirect()->route('userCRUD')->with('error', 'Cannot delete user with existing reservations.');
+            } 
+            else
+            {
+                return redirect()->route('userCRUD')->with('error', 'An unexpected error occurred.');
+            }
+        }
+    }
+}
