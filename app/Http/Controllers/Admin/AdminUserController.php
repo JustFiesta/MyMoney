@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -13,13 +13,26 @@ use Illuminate\Support\Str;
 
 class AdminUserController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
     public function index()
     {
         $users = User::all();
         return view('admin.users.index', compact('users'));
     }
 
-    // Metoda do dodawania nowego użytkownika
+    /**
+     * Show the form for creating a new resource.
+     */
+    public function create()
+    {
+        //
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
         // Walidacja danych przesłanych z formularza
@@ -55,50 +68,63 @@ class AdminUserController extends Controller
         return redirect()->route('admin.users.index')->with('success', 'User added successfully.');
     }
 
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(User $user)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request)
     {
-    // Debugowanie - wyświetl dane żądania
-    $user = User::findOrFail($request->id);
-    dd($user);
+        // Debugowanie - wyświetl dane żądania
+        $user = User::findOrFail($request->id);
+        dd($user);
 
-    // Usunięcie pola 'role' z danych wejściowych
-    $requestData = $request->except('role');
+        // Usunięcie pola 'role' z danych wejściowych
+        $requestData = $request->except('role');
 
-    $validatedData = Validator::make($requestData, [
-        'login' => 'required|string|max:255',
-        'email' => [
-            'required',
-            'string',
-            'email',
-            'max:255',
-            Rule::unique('users')->ignore($user->id),
-        ],
-        'password' => 'nullable|string|min:5',
-    ]);
+        $validatedData = Validator::make($requestData, [
+            'login' => 'required|string|max:255',
+            'email' => [
+                'required',
+                'string',
+                'email',
+                'max:255',
+                Rule::unique('users')->ignore($user->id),
+            ],
+            'password' => 'nullable|string|min:5',
+        ]);
 
-    if ($validatedData->fails()) {
-        return redirect()->back()->withErrors($validatedData)->withInput();
+        if ($validatedData->fails()) {
+            return redirect()->back()->withErrors($validatedData)->withInput();
+        }
+
+        $userData = [
+            'login' => $request->name,
+            'email' => $request->email,
+        ];
+
+        if ($request->filled('password')) {
+            $hashedPassword = Hash::make($request->input('password'));
+            $userData['password'] = $hashedPassword;
+        }
+
+        $user->role_id = $request->role_id == 1 ? 1 : 2;
+
+        $user->fill($userData);
+        $user->save();
+
+        return redirect()->route('admin.users.index')->with('success', 'User updated successfully.');
     }
 
-    $userData = [
-        'login' => $request->name,
-        'email' => $request->email,
-    ];
-
-    if ($request->filled('password')) {
-        $hashedPassword = Hash::make($request->input('password'));
-        $userData['password'] = $hashedPassword;
-    }
-
-    $user->role_id = $request->role_id == 1 ? 1 : 2;
-
-    $user->fill($userData);
-    $user->save();
-
-    return redirect()->route('admin.users.index')->with('success', 'User updated successfully.');
-    }
-
-
+    /**
+     * Remove the specified resource from storage.
+     */
     public function destroy(User $user)
     {
         try
