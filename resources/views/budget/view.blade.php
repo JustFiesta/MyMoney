@@ -5,7 +5,7 @@
             <h2 class="font-bold text-xl">Szybki dostęp</h2>
         </div>
         @if (isset($categories) && !$categories->isEmpty())
-            <button class="py-4 px-4 w-max text-lg rounded-full loginButton font-bold" onclick="filterExpenses('all')">Pokaż wszystko</button>
+            <button class="py-4 px-4 mt-2 w-max text-lg rounded-full loginButton font-bold" onclick="filterExpenses('all')">Pokaż wszystko</button>
     
             <div class="flex flex-wrap justify-center text-gray-400">
                 @foreach ($categories as $category)
