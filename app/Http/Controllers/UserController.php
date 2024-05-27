@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\User;
+use App\Models\Finance;
 
 class UserController extends Controller
 {
@@ -27,7 +28,11 @@ class UserController extends Controller
             $goals = $user->goals;
 
             // Fetch expenses and incomes
-            $expences = $finances->where('type', 'outcome');
+            $expences = Finance::where('user_id', $user->id)
+            ->where('type', 'outcome')
+            ->orderBy('created_at', 'DESC')
+            ->paginate(10);
+            
             $incomes = $finances->where('type', 'income');
 
             // Calculate totals
