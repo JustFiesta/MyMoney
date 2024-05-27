@@ -103,9 +103,22 @@
             </div>
 
             <div class="mt-3 space-y-1">
+                
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Ustawienia') }}
                 </x-responsive-nav-link>
+
+                @if(Auth::user()->role_id == 1)
+                    <x-responsive-nav-link :href="route('admin.users')">
+                        {{ __('Panel Użytkowników') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('admin.goals')">
+                        {{ __('Panel Celi Użytkowników') }}
+                    </x-responsive-nav-link>
+                    <x-responsive-nav-link :href="route('admin.finances')">
+                        {{ __('Panel Finansów Użytkowników') }}
+                    </x-responsive-nav-link>
+                @endif
 
                 <!-- Authentication -->
                 <form method="POST" action="{{ route('logout') }}">
