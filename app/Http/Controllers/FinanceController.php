@@ -62,7 +62,7 @@ class FinanceController extends Controller
         $finance->category = $request->category;
         $finance->save();
 
-        return redirect()->route('view-budget');
+        return redirect()->route('finances');
     }
 
     public function store(Request $request)
@@ -80,7 +80,7 @@ class FinanceController extends Controller
         $finance->category = $request->category;
         $finance->save();
 
-        return redirect()->route('view-budget');
+        return redirect()->route('finances');
     }
 
     public function destroy($id)
@@ -90,6 +90,6 @@ class FinanceController extends Controller
         $finance->delete();
 
         // Redirect back to the view budget page with a success message
-        return redirect()->route('view-budget');
+        return redirect()->route('finances');
     }
 }
