@@ -19,5 +19,3 @@ if %errorlevel% neq 0 (
     msg %username% "Nie udalo sie zainstalowac zaleznosci npm"
     exit /b %errorlevel%
 )
-
-code .
