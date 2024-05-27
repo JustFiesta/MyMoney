@@ -1,5 +1,5 @@
 {{-- CATEGORIES --}}
-<div class="mb-2 md:pl-6 md:pr-6 md:pb-2 flex flex-col lg:flex-row justify-between w-full text-center">
+<div class="mb-2 md:pl-6 md:pr-6 flex flex-col lg:flex-row justify-between w-full text-center">
     <div class="flex flex-col lg:flex-row justify-between items-center md:rounded-lg bg-white dark:bg-gray-800 w-full text-center">
         <div class="p-3 lg:p-6 text-gray-600 dark:text-gray-100">
             <h2 class="font-bold text-xl">Szybki dostęp</h2>
