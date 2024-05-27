@@ -47,13 +47,13 @@ Route::middleware('auth')->group(function () {
         Route::delete('/admin/users/{user}', [AdminUserController::class, 'destroy'])->name('admin.user.destroy');
 
         // Routes for CRUD - finances table
-        Route::get('/admin/users/finances', [AdminFinanceController::class, 'index'])->name('admin.finances');
-        Route::get('/admin/users/finances/create', [AdminFinanceController::class, 'create'])->name('admin.finance.create');
-        Route::post('/admin/users/finances', [AdminFinanceController::class, 'store'])->name('admin.finance.store');
-        Route::get('/admin/users/finances/{id}/edit', [AdminFinanceController::class, 'edit'])->name('admin.finance.edit');
-        Route::put('/admin/users/finances/{id}', [AdminFinanceController::class, 'update'])->name('admin.finance.update');
-        Route::delete('/admin/users/finances/{id}', [AdminFinanceController::class, 'destroy'])->name('admin.finance.destroy');
-
+        Route::get('/admin/finances', [AdminFinanceController::class, 'index'])->name('admin.finances');
+        Route::get('/admin/finances/create', [AdminFinanceController::class, 'create'])->name('admin.finance.create');
+        Route::post('/admin/finances', [AdminFinanceController::class, 'store'])->name('admin.finance.store');
+        Route::get('/admin/finances/{finance}/edit', [AdminFinanceController::class, 'edit'])->name('admin.finance.edit');
+        Route::put('/admin/finances/{finance}', [AdminFinanceController::class, 'update'])->name('admin.finance.update');
+        Route::delete('/admin/finances/{finance}', [AdminFinanceController::class, 'destroy'])->name('admin.finance.destroy');
+        
         //  Routes for CRUD - goals table
         Route::get('/admin/users/goals', [AdminGoalController::class, 'index'])->name('admin.goals');
         Route::get('/admin/users/goals/create', [AdminGoalController::class, 'create'])->name('admin.goal.create');
