@@ -16,19 +16,6 @@
         </div>
     </div>
 
-    {{-- SESSION STATUS --}}
-    <div>
-        @if (session('status'))
-            <div class="max-w-7xl mx-auto">
-                <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm md:rounded-lg">
-                    <div class="bg-green-500 text-white p-4 md:rounded-lg">
-                        {{ session('status') }}
-                    </div>
-                </div>
-            </div>
-        @endif
-    </div>
-
     {{-- BUDGET --}}
     @include('budget.view')
 
