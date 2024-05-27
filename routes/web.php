@@ -55,12 +55,12 @@ Route::middleware('auth')->group(function () {
         Route::delete('/admin/users/finances/{id}', [AdminFinanceController::class, 'destroy'])->name('admin.finance.destroy');
 
         //  Routes for CRUD - goals table
-        Route::get('/admin/users/goal', [AdminGoalController::class, 'index'])->name('admin.goals');
-        Route::get('/admin/users/goal/create', [AdminGoalController::class, 'create'])->name('admin.goal.create');
-        Route::post('/admin/users/goal', [AdminGoalController::class, 'store'])->name('admin.goal.store');
-        Route::get('/admin/users/goal/{id}/edit', [AdminGoalController::class, 'edit'])->name('admin.goal.edit');
-        Route::put('/admin/users/goal/{id}', [AdminGoalController::class, 'update'])->name('admin.goal.update');
-        Route::delete('/admin/users/goal/{id}', [AdminGoalController::class, 'destroy'])->name('admin.goal.destroy');
+        Route::get('/admin/users/goals', [AdminGoalController::class, 'index'])->name('admin.goals');
+        Route::get('/admin/users/goals/create', [AdminGoalController::class, 'create'])->name('admin.goal.create');
+        Route::post('/admin/users/goals', [AdminGoalController::class, 'store'])->name('admin.goal.store');
+        Route::get('/admin/users/goals/{goal}/edit', [AdminGoalController::class, 'edit'])->name('admin.goal.edit');
+        Route::put('/admin/users/goals/{goal}', [AdminGoalController::class, 'update'])->name('admin.goal.update');
+        Route::delete('/admin/users/goals/{goal}', [AdminGoalController::class, 'destroy'])->name('admin.goal.destroy');
 
     });
 });
