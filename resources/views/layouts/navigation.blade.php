@@ -50,10 +50,10 @@
                                 {{ __('Panel Użytkowników') }}
                             </x-dropdown-link>
                             <x-dropdown-link :href="route('admin.goals')">
-                                {{ __('Panel Celi Użytkowników') }}
+                                {{ __('Panel Celów') }}
                             </x-dropdown-link>
                             <x-dropdown-link :href="route('admin.finances')">
-                                {{ __('Panel Finansów Użytkowników') }}
+                                {{ __('Panel Finansów') }}
                             </x-dropdown-link>
                         @endif
 
@@ -113,10 +113,10 @@
                         {{ __('Panel Użytkowników') }}
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('admin.goals')">
-                        {{ __('Panel Celi Użytkowników') }}
+                        {{ __('Panel Celów') }}
                     </x-responsive-nav-link>
                     <x-responsive-nav-link :href="route('admin.finances')">
-                        {{ __('Panel Finansów Użytkowników') }}
+                        {{ __('Panel Finansów') }}
                     </x-responsive-nav-link>
                 @endif
 
