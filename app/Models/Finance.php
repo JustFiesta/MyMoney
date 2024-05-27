@@ -33,6 +33,7 @@ class Finance extends Model
         'type',
         'date',
         'category',
+        'user_id'
     ];
 
     /**
