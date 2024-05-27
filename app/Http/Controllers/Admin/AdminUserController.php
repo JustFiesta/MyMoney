@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
-
+use Illuminate\Support\Facades\Auth;
 
 class AdminUserController extends Controller
 {
@@ -18,7 +18,14 @@ class AdminUserController extends Controller
      */
     public function index()
     {
-        $users = User::all();
+        // Get id of current user
+        $loggedInUserId = Auth::id();
+
+        // Get users from db excluding first admin, current user and anonim
+        $users = User::whereNotIn('id', [1, $loggedInUserId])
+                 ->where('role_id', '!=', 3)
+                 ->get();
+
         return view('admin.users.index', compact('users'));
     }
 
@@ -27,7 +34,7 @@ class AdminUserController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.create');
     }
 
     /**
@@ -35,37 +42,21 @@ class AdminUserController extends Controller
      */
     public function store(Request $request)
     {
-        // Walidacja danych przesłanych z formularza
         $request->validate([
             'login' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:5',
-            'role' => 'required|string|in:user,admin',
+            'role_id' => 'required|in:1,2,3',
         ]);
 
-        // Sprawdzenie, czy e-mail jest unikalny
-        $validator = Validator::make($request->all(), [
-            'email' => 'unique:users,email'
-        ]);
-
-        // Jeśli e-mail nie jest unikalny, zwróć błąd
-        if ($validator->fails()) {
-            return back()->withErrors(['email' => 'Konto z takim adresem email już istnieje!'])->withInput();
-        }
-
-
-        // Tworzenie nowego użytkownika na podstawie danych z formularza
         $user = new User();
         $user->login = $request->login;
         $user->email = $request->email;
-        $user->password = bcrypt($request->password);
-        $user->role = $request->role;
-
-        // Zapisanie nowego użytkownika do bazy danych
+        $user->password = Hash::make($request->password);
+        $user->role_id = $request->role_id;
         $user->save();
 
-        // Przekierowanie po dodaniu użytkownika
-        return redirect()->route('admin.users.index')->with('success', 'User added successfully.');
+        return redirect()->route('admin.users')->with('success', 'Pomyślnie dodano użytkownika.');
     }
 
     /**
@@ -73,22 +64,15 @@ class AdminUserController extends Controller
      */
     public function edit(User $user)
     {
-        //
+        return view('admin.users.edit', compact('user'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request)
+    public function update(Request $request, User $user)
     {
-        // Debugowanie - wyświetl dane żądania
-        $user = User::findOrFail($request->id);
-        dd($user);
-
-        // Usunięcie pola 'role' z danych wejściowych
-        $requestData = $request->except('role');
-
-        $validatedData = Validator::make($requestData, [
+        $request->validate([
             'login' => 'required|string|max:255',
             'email' => [
                 'required',
@@ -98,28 +82,20 @@ class AdminUserController extends Controller
                 Rule::unique('users')->ignore($user->id),
             ],
             'password' => 'nullable|string|min:5',
+            'role_id' => 'required|in:1,2,3',
         ]);
 
-        if ($validatedData->fails()) {
-            return redirect()->back()->withErrors($validatedData)->withInput();
-        }
-
-        $userData = [
-            'login' => $request->name,
-            'email' => $request->email,
-        ];
+        $user->login = $request->login;
+        $user->email = $request->email;
 
         if ($request->filled('password')) {
-            $hashedPassword = Hash::make($request->input('password'));
-            $userData['password'] = $hashedPassword;
+            $user->password = Hash::make($request->password);
         }
 
-        $user->role_id = $request->role_id == 1 ? 1 : 2;
-
-        $user->fill($userData);
+        $user->role_id = $request->role_id;
         $user->save();
 
-        return redirect()->route('admin.users.index')->with('success', 'User updated successfully.');
+        return redirect()->route('admin.users')->with('success', 'Pomyślnie edytowano użytkownika.');
     }
 
     /**
@@ -127,20 +103,14 @@ class AdminUserController extends Controller
      */
     public function destroy(User $user)
     {
-        try
-        {
+        try {
             $user->delete();
-            return redirect()->route('admin.users.index')->with('success', 'User deleted successfully.');
-        }
-        catch (\Illuminate\Database\QueryException $e)
-        {
-            if ($e->getCode() === '23000')
-            {
-                return redirect()->route('admin.users.index')->with('error', 'Cannot delete user with existing stuff.');
-            } 
-            else
-            {
-                return redirect()->route('admin.users.index')->with('error', 'An unexpected error occurred.');
+            return redirect()->route('admin.users')->with('success', 'Pomyślnie usunięto użytkownika.');
+        } catch (\Illuminate\Database\QueryException $e) {
+            if ($e->getCode() === '23000') {
+                return redirect()->route('admin.users')->with('error', 'Nie można usunąć użytkownika z zależnościami w bazie.');
+            } else {
+                return redirect()->route('admin.users')->with('error', 'Ups! Wystąpił niespodziewany błąd.');
             }
         }
     }
