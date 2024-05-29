@@ -25,13 +25,13 @@
                             <label class="formLabel" for="login">
                                 Login
                             </label>
-                            <input type="text" name="login" id="login" value="{{ old('login') }}" class="formField">
+                            <input required type="text" name="login" id="login" value="{{ old('login') }}" class="formField">
                         </div>
                         <div class="mb-4">
                             <label class="formLabel" for="email">
                                 Email
                             </label>
-                            <input type="email" name="email" id="email" value="{{ old('email') }}" class="formField">
+                            <input required type="email" name="email" id="email" value="{{ old('email') }}" class="formField">
                         </div>
                         <div class="mb-4">
                             <label class="formLabel" for="password">
@@ -43,9 +43,9 @@
                             <label class="formLabel" for="role">
                                 Rola
                             </label>
-                            <select name="role_id" id="role_id" class="formField">
-                                <option value="1">Użytkownik</option>
-                                <option value="2">Admin</option>
+                            <select required name="role_id" id="role_id" class="formField">
+                                <option value="2">Użytkownik</option>
+                                <option value="1">Admin</option>
                             </select>
                         <div class="mt-4 flex justify-end">
                             <button onclick="window.location='{{ route('admin.users') }}'" class="inline-flex items-center cancelButton">
