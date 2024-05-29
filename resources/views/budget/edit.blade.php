@@ -2,6 +2,15 @@
     <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
         <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
             <div class="p-6 text-gray-900 dark:text-gray-100">
+                @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
                 <form action="{{ route('finances.update', $finance->id) }}" method="POST">
                     @csrf
                     @method('PUT')
@@ -14,7 +23,7 @@
                     </div>
                     <div class="mb-4">
                         <label for="amount" class="block formLabel">Kwota</label>
-                        <input type="number" id="amount" name="amount" class="formField" value="{{ $finance->amount }}" required>
+                        <input type="number" id="amount" name="amount" step="0.01" class="formField" value="{{ $finance->amount }}" required>
                     </div>
                     <div class="mb-4">
                         <label for="category" class="block formLabel">Kategoria</label>

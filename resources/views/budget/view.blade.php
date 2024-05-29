@@ -1,3 +1,14 @@
+@if(session('success'))
+    <div class="alert alertSuccess">
+        {{ session('success') }}
+    </div>
+@endif
+@if(session('error'))
+    <div class="alert alertDanger">
+        {{ session('error') }}
+    </div>
+@endif
+
 {{-- CATEGORIES --}}
 <div class="mb-2 md:pl-6 md:pr-6 flex flex-col lg:flex-row justify-between w-full text-center">
     <div class="flex flex-col lg:flex-row justify-between items-center md:rounded-lg bg-white dark:bg-gray-800 w-full text-center">
