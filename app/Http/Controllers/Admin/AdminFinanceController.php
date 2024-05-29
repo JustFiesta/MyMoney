@@ -38,9 +38,9 @@ class AdminFinanceController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'amount' => 'required|numeric',
+            'amount' => 'required|numeric|min:0.01',
             'type' => 'required|in:income,outcome',
-            'category' => 'required|string',
+            'category' => 'required|string|min:2',
             'user_id' => 'required|exists:users,id'
         ]);
 
