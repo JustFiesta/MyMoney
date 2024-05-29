@@ -76,7 +76,7 @@ class FinanceController extends Controller
     {
         $request->validate([
             'type' => 'required|string|in:income,outcome',
-            'amount' => 'required|numeric|min:0',
+            'amount' => 'required|numeric||min:0.01',
             'category' => 'required|string|max:255',
         ]);
 
@@ -87,7 +87,8 @@ class FinanceController extends Controller
         $finance->category = $request->category;
         $finance->save();
 
-        return redirect()->route('finances');
+        return redirect()->route('finances')->with('success', 'Finanse zostały pomyślnie dodane.');
+
     }
 
     public function destroy($id)

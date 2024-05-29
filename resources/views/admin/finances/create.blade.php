@@ -25,32 +25,41 @@
                             <label class="formLabel" for="amount">
                                 Kwota
                             </label>
-                            <input type="number" name="amount" id="amount" value="{{ old('amount') }}" class="formField">
+                            <input required type="number" name="amount" id="amount" step="0.01" min="0.01" value="{{ old('amount') }}" class="formField">
                         </div>
                         <div class="mb-4">
                             <label class="formLabel" for="type">
                                 Typ
                             </label>
-                            <select name="type" id="type" class="formField">
+                            <select required name="type" id="type" class="formField">
                                 <option value="income" {{ old('type') == 'income' ? 'selected' : '' }}>Przychód</option>
                                 <option value="outcome" {{ old('type') == 'outcome' ? 'selected' : '' }}>Wydatek</option>
                             </select>
+                            @error('type')
+                                <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
+                            @enderror
                         </div>
                         
                         <div class="mb-4">
                             <label class="formLabel" for="category">
                                 Kategoria
                             </label>
-                            <textarea name="category" id="category" class="formField">{{ old('description') }}</textarea>
+                            <textarea required name="category" id="category" class="formField">{{ old('category') }}</textarea>
+                            @error('category')
+                                <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="mb-4">
                             <label class="formLabel" for="user_id">
                                 ID właściciela
                             </label>
-                            <input type="number" name="user_id" id="user_id" value="{{ old('user_id') }}" class="formField">
+                            <input required type="number" name="user_id" id="user_id" value="{{ old('user_id') }}" class="formField">
+                            @error('user_id')
+                                <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="mt-4 flex justify-end">
-                            <button onclick="window.location='{{ route('admin.finances') }}'" class="inline-flex items-center cancelButton">
+                            <button type="button" onclick="window.location='{{ route('admin.finances') }}'" class="inline-flex items-center cancelButton">
                                 Anuluj
                             </button>
                             <button type="submit" class="ml-3 uppercase actionButton">
@@ -63,4 +72,3 @@
         </div>
     </div>
 </x-app-layout>
-
