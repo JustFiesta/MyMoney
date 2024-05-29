@@ -38,16 +38,9 @@ class AdminGoalController extends Controller
      */
     public function store(Request $request)
     {
-
-        $userExists = User::where('id', $request->user_id)->exists();
-
-        if (!$userExists) {
-            return redirect()->back()->with('error', 'Użytkownik o podanym ID nie istnieje.');
-        }
-
         $request->validate([
-            'amount' => 'required|numeric',
-            'content' => 'nullable|string',
+            'amount' => 'required|numeric|min:0.01',
+            'content' => 'nullable|string|min:2',
             'user_id' => 'required|exists:users,id'
         ], [
             'user_id.exists' => 'Nie znaleziono użytkownika o podanym ID.'
@@ -76,13 +69,17 @@ class AdminGoalController extends Controller
     public function update(Request $request, Goal $goal)
     {
         $request->validate([
-            'amount' => 'required|numeric',
-            'content' => 'nullable|string',
+            'amount' => 'required|numeric|min:0.01',
+            'content' => 'nullable|string|min:2',
+            'user_id' => 'required|exists:users,id'
+        ], [
+            'user_id.exists' => 'Nie znaleziono użytkownika o podanym ID.'
         ]);
 
         $goal->update([
             'amount' => $request->amount,
             'content' => $request->content,
+            'user_id' => $request->user_id
         ]);
 
         return redirect()->route('admin.goals')->with('success', 'Pomyślnie zaktualizowano cel.');

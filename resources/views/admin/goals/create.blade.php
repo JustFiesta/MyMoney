@@ -25,19 +25,25 @@
                             <label class="formLabel" for="amount">
                                 Kwota
                             </label>
-                            <input type="number" name="amount" id="amount" value="{{ old('amount') }}" class="formField">
+                            <input required type="number" name="amount" id="amount" step="0.01" min="0.01" value="{{ old('amount') }}" class="formField">
+                            @error('amount')
+                                <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="mb-4">
                             <label class="formLabel" for="content">
                                 Opis
                             </label>
-                            <textarea name="content" id="content" class="formField">{{ old('content') }}</textarea>
+                            <textarea required name="content" id="content" minlength="2" class="formField">{{ old('content') }}</textarea>
                         </div>
                         <div class="mb-4">
                             <label class="formLabel" for="content">
                                 ID właściciela
                             </label>
-                            <input type="number" name="user_id" id="user_id" value="{{ old('user_id') }}" class="formField">
+                            <input required type="number" name="user_id" id="user_id" value="{{ old('user_id') }}" class="formField">
+                            @error('user_id')
+                                <span class="text-red-500 text-sm mt-1">{{ $message }}</span>
+                            @enderror
                         </div>
                         <div class="mt-4 flex justify-end">
                             <button onclick="window.location='{{ route('admin.goals') }}'" class="inline-flex items-center cancelButton">

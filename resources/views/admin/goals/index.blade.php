@@ -5,18 +5,16 @@
         </h2>
     </x-slot>
 
-    <div>
-        @if(session('success'))
-            <div class="alert alertSuccess">
-                {{ session('success') }}
-            </div>
-        @endif
-        @if(session('error'))
-            <div class="alert alertDanger">
-                {{ session('error') }}
-            </div>
-        @endif
-    </div>
+    @if(session('success'))
+        <div class="alert alertSuccess">
+            {{ session('success') }}
+        </div>
+    @endif
+    @if(session('error'))
+        <div class="alert alertDanger">
+            {{ session('error') }}
+        </div>
+    @endif
 
     <div class="pt-2 md:pt-6 lg:pt-6">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
