@@ -8,7 +8,11 @@ App serves as personal budget tracker.
 
 ## What have I learned
 
-TODO
+* how to work with fullstack frameworks
+* understeand power of MVC and splitting code to right classes
+* basic HTTP CRUD
+* creation of app views and templates
+* how to plan work effectively
 
 <hr>
 
